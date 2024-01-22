@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 //import { useNavigate } from 'react-router-dom';
-import {
-  HiPencil,
-  HiTrash,
-  HiEye,
-  HiArrowUpOnSquare,
-  HiArrowDownOnSquare,
-} from 'react-icons/hi2';
+// import {
+//   HiPencil,
+//   HiTrash,
+//   HiEye,
+//   HiArrowUpOnSquare,
+//   HiArrowDownOnSquare,
+// } from 'react-icons/hi2';
 
 import Tag from '../../ui/Tag';
 //import Menus from 'ui/Menus';
@@ -19,6 +19,9 @@ import { formatCurrency } from '../../utils/helpers';
 import { formatDistanceFromNow } from '../../utils/helpers';
 //import { useCheckout } from 'features/check-in-out/useCheckout';
 import { format, isToday } from 'date-fns';
+import Menus from '../../ui/Menus';
+import { HiEye } from 'react-icons/hi2';
+import { useNavigate } from 'react-router';
 
 // v1
 // const TableRow = styled.div`
@@ -86,6 +89,7 @@ function BookingRow({
     'checked-in': 'green',
     'checked-out': 'silver',
   };
+  const navigate = useNavigate()
 
   return (
     <Table.Row role='row'>
@@ -112,6 +116,13 @@ function BookingRow({
       <Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</Tag>
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
+
+     <Menus>
+        <Menus.Toggle id={bookingId} />
+        <Menus.List id={bookingId}>
+          <Menus.Button icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>See Details</Menus.Button>
+        </Menus.List>
+       </Menus>
 
       {/* VIDEO we could export this into own component... */}
         {/* <Modal>

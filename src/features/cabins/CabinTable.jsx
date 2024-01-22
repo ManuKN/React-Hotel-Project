@@ -5,6 +5,8 @@ import CabinRow from "./CabinRow";
 import { useCabins } from "./useCabins";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Pagination from "../../ui/Pagination";
+
 //import Filter from "../../ui/Filter";
 
 // const TableHeader = styled.header`
@@ -64,6 +66,10 @@ function CabinTable() {
           data={sortedCabins}
           render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
         />
+        <Table.Footer>
+          <Pagination count={8} />
+        </Table.Footer>
+
       </Table>
     </Menus>
   );
