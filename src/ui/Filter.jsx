@@ -41,7 +41,7 @@ function Filter({Filterfield , options}){
    searchParams.set(Filterfield,value)
    setSearchParams(searchParams)
   }
-  const currentFilter = searchParams.get("discount") || options.at(0).value;
+  const currentFilter = searchParams.get(Filterfield) || options.at(0).value;
   return(
     <StyledFilter>
       {options.map((option) =>( <FilterButton key={option.value} onClick={() => handleClick(option.value)}
