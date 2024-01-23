@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import CreateCabinForm from "./CreateCabinForm";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { formatCurrency } from "../../utils/helpers";
@@ -100,7 +99,7 @@ function CabinRow({ cabin }) {
               </Modal.Open>
 
               <Modal.Open opens="delete">
-                <Menus.But  ton icon={<HiTrash />}>Delete</Menus.But>
+                <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
               </Modal.Open>
             </Menus.List>
 
