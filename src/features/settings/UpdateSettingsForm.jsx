@@ -64,7 +64,7 @@ function UpdateSettingsForm() {
           id="breakfast-price"
           defaultValue={breakFastPrice}
           disabled={isUpdating}
-          onBlur={(e) => handleUpdate(e, "breakfastPrice")}
+          onBlur={(e) => handleUpdate(e, "breakFastPrice")}
         />
       </FormRow>
     </Form>
