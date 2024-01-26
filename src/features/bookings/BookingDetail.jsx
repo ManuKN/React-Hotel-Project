@@ -3,6 +3,7 @@ import ButtonText from '../../ui/ButtonText';
 import Row from '../../ui/Row';
 import Heading from '../../ui/Heading';
 import Tag from '../../ui/Tag';
+import Empty from '../../ui/Empty'
 import { useMoveBack } from '../../hooks/useMoveBack';
 import Button from '../../ui/Button';
 import ButtonGroup from "../../ui/ButtonGroup"
@@ -11,12 +12,12 @@ import Spinner from '../../ui/Spinner';
 import BookingDataBox from './BookingDataBox';
 import { useNavigate } from 'react-router-dom';
 import { HiArrowDownOnSquareStack, HiArrowUpOnSquareStack, HiTrash } from 'react-icons/hi2';
-import useCheckOut from '../check-in-out/useCheckOut';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import { deleteCabin } from '../../services/apiCabins';
 import { useState } from 'react';
 import { useDeletebooking } from './useDeletebooking';
 import Modal from '../../ui/Modal';
+import useCheckOut from '../check-in-out/useCheckout';
 
 
 const HeadingGroup = styled.div`
@@ -36,6 +37,7 @@ function BookingDetail() {
   const moveBack = useMoveBack()
 
   if(isLoading) return <Spinner />
+  if(!booking) return <Empty resourceName='booking' />
   
   const statusToTagName = {
     unconfirmed: 'blue',

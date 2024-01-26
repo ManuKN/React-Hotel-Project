@@ -1,19 +1,15 @@
-import { useDarkMode } from 'context/DarkModeContext';
-import {
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from 'recharts';
+
 import styled from 'styled-components';
-import { box } from 'styles/styles';
-import Heading from 'ui/Heading';
+import Heading from '../../ui/Heading';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { useDarkMode } from '../../context/DarkModeContext';
+
 
 const ChartBox = styled.div`
-  ${box}
-  padding: 2.4rem 3.2rem;
+ background-color:var(--color-grey-0);
+ border:1px solid var(--color-grey-100);
+ border-radius: var(--border-radius-md);
+  padding: 2.4rem 3rem;
 
   grid-column: 3 / span 2;
 
@@ -23,7 +19,7 @@ const ChartBox = styled.div`
 
   /* A bit hack, but okay */
   & > *:first-child {
-    margin-bottom: 1.6rem;
+    margin-bottom: 1rem;
   }
 `;
 /*
@@ -225,6 +221,43 @@ function prepareData(startData, stays) {
     .filter((obj) => obj.value > 0);
 
   return data;
+  }
+
+  function DurationChart({confirmedStays}){
+    const{isdarkMode} = useDarkMode()
+    const startData = isdarkMode ? startDataDark : startDataLight
+    const data = prepareData(startData , confirmedStays)
+    return( 
+    <ChartBox>
+    <Heading as='h2'>Stay duration summary</Heading>
+    <ResponsiveContainer width='100%' height={250}>
+      <PieChart>
+        <Pie data={data} 
+        nameKey='duration' dataKey='value' 
+        innerRadius={70} outerradius={110}
+        cx='45%'
+        cy='50%'
+        paddingAngle={2}>
+          {data.map((entry) =><Cell fill={entry.color} stroke={entry.color} key={entry.duration}/>)}
+        </Pie>
+        <Tooltip />
+        <Legend verticalAlign='middle' 
+        align='right'
+        width='30%'
+        layout='vertical'
+        iconSize={15}
+        iconType='circle' />
+      </PieChart>
+    </ResponsiveContainer>
+    </ChartBox>
+    )
+  }
+  export default DurationChart;
+
+
+
+
+
 
   /*
   const tempData = stays.reduce((obj, cur) => {
@@ -282,54 +315,5 @@ function prepareData(startData, stays) {
 
   return Object.values(tempData).filter((obj) => obj.value > 0);
   */
-}
 
-function DurationChart({ confirmedStays }) {
-  const { isDarkMode } = useDarkMode();
-  const startData = isDarkMode ? startDataDark : startDataLight;
-  const data = prepareData(startData, confirmedStays);
 
-  return (
-    <ChartBox>
-      <Heading type='h2'>Stay duration summary</Heading>
-      <ResponsiveContainer width='100%' height={240}>
-        <PieChart>
-          <Pie
-            data={data}
-            nameKey='duration'
-            dataKey='value'
-            cx='40%'
-            cy='50%'
-            innerRadius={85}
-            outerRadius={110}
-            fill='#4f46e5'
-            paddingAngle={3}
-            startAngle={180}
-            endAngle={-180}
-          >
-            {data.map((entry, i) => (
-              <Cell
-                key={entry.duration}
-                fill={entry.color}
-                stroke={entry.color}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend
-            // verticalAlign='bottom'
-            // align='center'
-            verticalAlign='middle'
-            align='right'
-            width='30%'
-            layout='vertical'
-            iconSize={15}
-            iconType='circle'
-          />
-        </PieChart>
-      </ResponsiveContainer>
-    </ChartBox>
-  );
-}
-
-export default DurationChart;
