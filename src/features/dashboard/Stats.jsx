@@ -1,5 +1,5 @@
 
-import { HiOutlineBanknotes, HiOutlineBriefcase, HiOutlineCalendarDays, HiOutlineChartBar, HiOutlineCurrencyDollar } from 'react-icons/hi2';
+import { HiOutlineBanknotes, HiOutlineBriefcase, HiOutlineCalendarDays, HiOutlineChartBar} from 'react-icons/hi2';
 import Stat from '../dashboard/Stat';
 import { formatCurrency } from '../../utils/helpers';
 

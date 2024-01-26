@@ -13,8 +13,6 @@ import BookingDataBox from './BookingDataBox';
 import { useNavigate } from 'react-router-dom';
 import { HiArrowDownOnSquareStack, HiArrowUpOnSquareStack, HiTrash } from 'react-icons/hi2';
 import ConfirmDelete from '../../ui/ConfirmDelete';
-import { deleteCabin } from '../../services/apiCabins';
-import { useState } from 'react';
 import { useDeletebooking } from './useDeletebooking';
 import Modal from '../../ui/Modal';
 import useCheckOut from '../check-in-out/useCheckout';

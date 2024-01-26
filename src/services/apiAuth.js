@@ -41,7 +41,6 @@ export async function getCurrentUser(){
     if(error)
     {
     throw new Error(error.message);
-    console.log("Time-Out Please Login Again ")
     }
        return data?.user
 }
